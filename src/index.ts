@@ -1,3 +1,5 @@
+import type { ComponentType } from "react";
+
 // A type that is structurally compatible with Next.js's `StaticImageData`.
 export type StaticImageAsset = {
     src: string;
@@ -78,4 +80,16 @@ export type DeploymentConfig = {
     docsLink?: string;
     // Whether the per-state PDF-report download button is shown.
     reportsEnabled?: boolean;
+};
+
+// The full surface that a branding package exports.
+export type Exports = {
+    config: DeploymentConfig;
+    AboutPage?: ComponentType;
+    About?: ComponentType;
+    Partners?: ComponentType;
+    DataStories?: ComponentType;
+    Footer?: ComponentType;
+    Credits?: ComponentType;
+    PartnerLogos?: ComponentType;
 };
