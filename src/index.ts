@@ -12,7 +12,7 @@ export type State = {
     slug: string;
     // Icon shown on the state card in the Analytics Dashboard carousel.
     icon: StaticImageAsset;
-    status: "active" | "coming_soon";
+    status: "active" | "inactive";
     // GeoJSON loader rendered as an overlay on this state's analytics map.
     overlay?: () => Promise<{ default: unknown }>;
 };
