@@ -15,6 +15,11 @@ export type State = {
     status: "active" | "inactive";
     // GeoJSON loader rendered as an overlay on this state's analytics map.
     overlay?: () => Promise<{ default: unknown }>;
+    // Fallback Leaflet zoom level for the state's analytics map.
+    zoom?: number;
+    // Minimum/maximum allowed zoom level for the state's analytics map.
+    minZoom?: number;
+    maxZoom?: number;
 };
 
 export type Resource = {
