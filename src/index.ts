@@ -27,7 +27,9 @@ export type Resource = {
     source: string;
     lastUpdated: string;
     updateFrequency: string;
-    referencePeriod: string;
+    // Use parseable date strings (e.g. "2023-01" or "2024-03-15").
+    referencePeriodFrom: string;
+    referencePeriodTo: string;
     url: string;
     tags: string[];
 };
