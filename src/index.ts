@@ -83,7 +83,11 @@ export type DeploymentConfig = {
     // URL for the "Read the documentation" / "Explore Source Data" CTAs in
     // the analytics detail panel. Empty string or undefined hides the CTAs.
     docsLink?: string;
-    // Whether the per-state PDF-report download button is shown.
+    // Whether the About Us feature is enabled.
+    // Requires the branding package to implement an `AboutPage` component.
+    aboutUsEnabled?: boolean;
+    // Whether the PDF report feature is enabled.
+    // Requires the backend plugin to implement a GET /report endpoint.
     reportsEnabled?: boolean;
 };
 
