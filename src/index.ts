@@ -27,11 +27,21 @@ export type Resource = {
     source: string;
     lastUpdated: string;
     updateFrequency: string;
-    // Use parseable date strings (e.g. "2023-01" or "2024-03-15").
+    // Parseable date string (e.g. "2023-01" or "2024-03-15").
     referencePeriodFrom: string;
     referencePeriodTo: string;
-    url: string;
     tags: string[];
+    url: string;
+};
+
+export type Story = {
+    title: string;
+    description: string;
+    // Parseable date string (e.g. "2024-05-16").
+    date: string;
+    // Image URL (typically a TS asset import's `.src`).
+    image: string;
+    url: string;
 };
 
 export type Language = {
@@ -41,13 +51,23 @@ export type Language = {
     value: string;
 };
 
+export type Features = {
+    // About Us page. Requires the branding package to export an `AboutPage` component.
+    aboutUs?: boolean;
+    // PDF report. Requires the backend plugin to implement a GET /report endpoint.
+    reports?: boolean;
+};
+
 export type DeploymentConfig = {
     // States shown in the Analytics Dashboard carousel on the home page.
     states?: State[];
     // Cards prepended to the Resources carousel before the API-fetched datasets.
     resources?: Resource[];
+    // Stories rendered by the Stories carousel.
+    // Empty array or undefined hides the carousel.
+    stories?: Story[];
     // Languages offered in the Google Translate dropdown.
-    // Empty array hides the dropdown.
+    // Empty array or undefined hides the dropdown.
     languages?: Language[];
     // next-intl locale codes for which the deployment ships UI translations,
     // and which are exposed as routes. Defaults to ["en"].
@@ -64,11 +84,13 @@ export type DeploymentConfig = {
     // Site logo shown in the header. Pass a TS-imported asset directly
     // (e.g. `import logo from './logo.png'). Undefined hides the logo.
     logo?: StaticImageAsset;
-    // Foreground image on top of `heroBackground` in the home-page hero section.
-    // Pass a TS-imported asset directly. Undefined hides the image.
+    // Foreground image used by the default `IntroSection` (a hero).
+    // Pass a TS-imported asset directly.
+    // Ignored if the branding package exports its own `IntroSection` component.
     heroForeground?: StaticImageAsset;
-    // Home-page hero background image URL (typically a TS asset import's `.src`).
-    // Occupies a 560px-tall section. Empty string omits the image.
+    // Background image URL used by the default `IntroSection` (a hero),
+    // (typically a TS asset import's `.src`). Occupies a 560px-tall section.
+    // Ignored if the branding package exports its own `IntroSection` component.
     heroBackground?: string;
     // Browser-tab favicon (typically a multi-resolution .ico). Empty
     // string or undefined omits the <link rel="icon">.
@@ -85,21 +107,16 @@ export type DeploymentConfig = {
     // URL for the "Read the documentation" / "Explore Source Data" CTAs in
     // the analytics detail panel. Empty string or undefined hides the CTAs.
     docsLink?: string;
-    // Whether the About Us feature is enabled.
-    // Requires the branding package to implement an `AboutPage` component.
-    aboutUsEnabled?: boolean;
-    // Whether the PDF report feature is enabled.
-    // Requires the backend plugin to implement a GET /report endpoint.
-    reportsEnabled?: boolean;
+    // Optional feature flags. Each key defaults to false when omitted.
+    features?: Features;
 };
 
 // The full surface that a branding package exports.
 export type Exports = {
     config: DeploymentConfig;
     AboutPage?: ComponentType;
-    About?: ComponentType;
-    Partners?: ComponentType;
-    DataStories?: ComponentType;
+    IntroSection?: ComponentType;
+    OutroSection?: ComponentType;
     Footer?: ComponentType;
     Credits?: ComponentType;
     PartnerLogos?: ComponentType;
