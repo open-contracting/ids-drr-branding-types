@@ -92,20 +92,23 @@ export type DeploymentConfig = {
     // (typically a TS asset import's `.src`). Occupies a 560px-tall section.
     // Ignored if the branding package exports its own `IntroSection` component.
     heroBackground?: string;
-    // Browser-tab favicon (typically a multi-resolution .ico). Empty
-    // string or undefined omits the <link rel="icon">.
+    // Browser-tab favicon (typically a multi-resolution .ico).
+    // Empty string or undefined omits the <link rel="icon">.
     favicon?: string;
-    // iOS home-screen icon (180x180 PNG). Empty string or undefined
-    // omits the <link rel="apple-touch-icon">.
+    // iOS home-screen icon (180x180 PNG).
+    // Empty string or undefined omits the <link rel="apple-touch-icon">.
     appleIcon?: string;
-    // Image used in Open Graph and Twitter card meta tags for link
-    // previews. Empty string or undefined omits the image fields.
+    // Image used in Open Graph and Twitter card meta tags for link previews.
+    // Empty string or undefined omits the image fields.
     openGraphImage?: string;
-    // URL for the "Read the user guide" CTA in the analytics detail
-    // panel. Empty string or undefined hides the CTA.
+    // URL for the "Read the user guide" CTA in the analytics detail panel.
+    // Empty string or undefined hides the CTA.
     userGuideLink?: string;
-    // URL for the "Read the documentation" / "Explore Source Data" CTAs in
-    // the analytics detail panel. Empty string or undefined hides the CTAs.
+    // URL for the "User Manual" link in the glossary header.
+    // Empty string or undefined hides the link.
+    userManualLink?: string;
+    // URL for the full documentation in e.g. the analytics detail panel.
+    // Empty string or undefined hides any links.
     docsLink?: string;
     // Optional feature flags. Each key defaults to false when omitted.
     features?: Features;
