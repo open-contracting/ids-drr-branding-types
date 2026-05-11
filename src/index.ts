@@ -57,8 +57,31 @@ export type Features = {
     aboutUs?: boolean;
     // PDF report. Requires the backend plugin to implement a GET /report endpoint.
     reports?: boolean;
-    // Glossary page. Requires the frontend to ship glossary content.
-    glossary?: boolean;
+};
+
+export type GlossaryTerm = {
+    // The term for a concept.
+    term: string;
+    // A category for the concept.
+    tag?: string;
+    // Short summary of the concept.
+    summary: string;
+    // Long description of the concept.
+    definition: string;
+    // How the concept is measured, computed, or used.
+    methodology: string;
+    // Why the concept matters.
+    significance: string;
+    // Datasets, dashboards, or publications in which the concept appears.
+    usage: string;
+    // How the concept is interpreted in policy and modelling contexts.
+    interpretation?: { policy: string; model: string };
+    // How the concept is operationalized for each disaster type.
+    disasterMethodology?: { disasterType: string; methodology: string }[];
+    // Names of related concepts in the same glossary.
+    related?: string[];
+    // How the concept can be misinterpreted.
+    misinterpretation?: string;
 };
 
 export type DeploymentConfig = {
@@ -113,6 +136,9 @@ export type DeploymentConfig = {
     // URL for the full documentation in e.g. the analytics detail panel.
     // Empty string or undefined hides any links.
     docsLink?: string;
+    // CSV string containing the glossary, which is parsed into `GlossaryTerm[]`.
+    // Empty/undefined hides the glossary page and navigation link.
+    glossaryCsv?: string;
     // Optional feature flags. Each key defaults to false when omitted.
     features?: Features;
 };
