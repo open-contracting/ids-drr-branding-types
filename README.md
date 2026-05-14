@@ -17,7 +17,6 @@ In a branding package:
 import type { DeploymentConfig } from 'ids-drr-branding-types';
 
 export const config: DeploymentConfig = {
-  heroImage: '...',
   states: [...],
   // ...
 };
