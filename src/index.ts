@@ -23,6 +23,17 @@ export type State = {
     maxZoom?: number;
 };
 
+export type TileLayer = {
+    // Leaflet tile URL template, e.g. "https://.../{z}/{x}/{y}.png".
+    url: string;
+    // Attribution HTML shown in the map's bottom-right control.
+    attribution: string;
+};
+
+// Selectable base-map tile layers for the analytics map, keyed by the
+// display name shown in MapChart's layer switcher. Keys are arbitrary.
+export type TileLayers = Record<string, TileLayer>;
+
 export type Resource = {
     title: string;
     source: string;
@@ -139,6 +150,9 @@ export type DeploymentConfig = {
     // CSV string containing the glossary, which is parsed into `GlossaryTerm[]`.
     // Empty/undefined hides the glossary page and navigation link.
     glossaryCsv?: string;
+    // Selectable base-map tile layers for the analytics map, keyed by
+    // display name. Undefined falls back to MapChart's built-in layer.
+    tileLayers?: TileLayers;
     // Optional feature flags. Each key defaults to false when omitted.
     features?: Features;
 };
