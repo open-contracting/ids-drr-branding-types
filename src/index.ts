@@ -138,9 +138,6 @@ export type DeploymentConfig = {
     // Image used in Open Graph and Twitter card meta tags for link previews.
     // Empty string or undefined omits the image fields.
     openGraphImage?: string;
-    // URL for the "Read the user guide" CTA in the analytics detail panel.
-    // Empty string or undefined hides the CTA.
-    userGuideLink?: string;
     // URL for the "User Manual" link in the glossary header.
     // Empty string or undefined hides the link.
     userManualLink?: string;
